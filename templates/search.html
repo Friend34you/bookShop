@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{% url 'home' as home %}
+{% url 'orders' as orders %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>order</title>
+</head>
+<body>
+<div id="navigation">
+    <a href="{{ home }}">Home</a>
+    <a href="{{ orders }}">Orders</a>
+</div>
+{% if not list_of_all_orders %}
+    <h1>Ничего не найдено</h1>
+    <h3>Возможно, вы ввели данные некорректно? Вернитесь и попробуйте ещё раз</h3>
+{% else %}
+    <h1>Список заказов для: {{ list_of_all_orders.0.id_customer.first_name }}</h1>
+    <table>
+        <tr>
+            <th>Заказанный продукт</th>
+        </tr>
+        {% for order in list_of_all_orders %}
+            <tr>
+                <td>{{ order.product }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endif %}
+{#{% endblock content %}#}
+</body>
+</html>

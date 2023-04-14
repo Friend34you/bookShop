@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% url 'home' as home %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="navigation">
+    <a href="{{ home }}">Home</a>
+</div>
+  <h1>Список всех заказов:</h1>
+  <form action="{% url 'search' %}" method="GET">
+      {% csrf_token %}
+      <input name="q" type="text" placeholder="Введите имя или фамилию...">
+  </form>
+  <table>
+    <tr>
+      <th>Номер заказа</th>
+      <th>Продукт</th>
+      <th>Покупатель</th>
+    </tr>
+    {% for order in list_of_all_orders %}
+    <tr>
+      <td>{{ order.id_order }}</td>
+      <td>{{ order.product }}</td>
+      <td>{{ order.id_customer.first_name}} {{ order.id_customer.last_name}}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+</body>
+</html>

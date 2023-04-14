@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Title</title>
+</head>
+<body>
+<a href="/">Главная</a>
+<a href="/products">Список товаров</a>
+<a href="/cart">Корзина</a>
+{% block content %}
+<div class="product">
+    <div>
+        <h2>{{ product }}</h2>
+        <p>Цвет: {{ product.id_color }}</p>
+        <p>Тип корпуса: {{ product.id_body.id_body_type }}</p>
+        <p>Материал корпуса: {{ product.id_body.id_body_material }}</p>
+        <p>Тип грифа: {{ product.id_neck.id_neck_type }}</p>
+        <p>Материал грифа: {{ product.id_neck.id_neck_material }}</p>
+        <p>Количество ладов: {{ product.id_neck.frets }}</p>
+        <p>Производитель: {{ product.id_producer }}</p>
+        <p class="price">Цена: {{ product.price }} рублей</p>
+    </div>
+{#    <div>#}
+{#        <img class="pic" src="{{ product.picture }}" alt="ProductPicture">#}
+{#    </div>#}
+{#</div>#}
+{#<form action="{% url 'cart_add' id_product=product.id_product %}" method="post">#}
+{#    {{ cart_product_form }}#}
+{#    {% csrf_token %}#}
+{#    <input type="submit" value="Добавить в корзину">#}
+{#</form>#}
+{% endblock %}
+</body>
+</html>

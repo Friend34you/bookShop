@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Title</title>
+</head>
+<body>
+<a href="/">Главная</a>
+<a href="/products">Список товаров</a>
+<a href="/cart">Корзина</a>
+{% block content %}
+<div class="product">
+    <div>
+        <h2>{{ book }}</h2>
+        <p>Название: {{ book.title }}</p>
+        <p>Категория: {{ book.category }}</p>
+        <p>Автор: {{ book.author }}</p>
+        <p>Год: {{ book.year }}</p>
+        <p>Издательство: {{ book.publishing}}</p>
+        <p>Описание: {{ book.description}}</p>
+    </div>
+    <div>
+{#        <img class="pic" src="{{ book.picture }}" alt="ProductPicture">#}
+    </div>
+</div>
+<form action="{% url 'cart_add' id_book=book.id_book %}" method="post">
+    {{ cart_product_form }}
+    {% csrf_token %}
+    <input type="submit" value="Добавить в корзину">
+</form>
+{% endblock %}
+</body>
+</html>

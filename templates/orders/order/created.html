@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% block content %}
+<a href="/">Главная</a>
+<a href="/books">Список товаров</a>
+<h1>Заказ оформлен </h1>
+<p>Спасибо за покупку! Номер вашего заказа:
+    <strong>{{ order.id }}</strong>.</p>
+<p>Дата оформления заказа: {{ order.created.day }}-0{{ order.created.month }}-{{ order.created.year }}</p>
+{% endblock %}
+</body>
+</html>

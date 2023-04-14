@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Оформление заказа</title>
+</head>
+<body>
+
+{% block content %}
+<h1>Оформление заказа</h1>
+<div class="order-info">
+    <h3>Ваш заказ:</h3>
+    <ul>
+        {% for item in cart %}
+        <li>
+            {{ item.quantity }} x {{ item.product.model }}
+            <span>{{ item.total_price }} рублей</span>
+        </li>
+        {% endfor %}
+    </ul>
+    <p>Итого: {{ cart.get_total_price }} рублей</p>
+</div>
+<p>Введите адрес доставки: </p>
+<form action="." method="post" class="order-form">
+    {{ form.as_p }}
+    <p><input type="submit" value="Подтвердить"></p>
+    {% csrf_token %}
+</form>
+{% endblock %}
+</body>
+</html>
