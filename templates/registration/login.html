@@ -9,11 +9,11 @@
 <a href="{% url "home" %}">Главная</a>
 <form method="post">
     {% csrf_token %}
-    <label for="{{ form.username.id_for_label }}">Имя:</label>
+    <label id="username" for="{{ form.username.id_for_label }}">Имя:</label>
     {{ form.username }}
-    <label for="{{ form.password.id_for_label }}">Пароль:</label>
+    <label id="password" for="{{ form.password.id_for_label }}">Пароль:</label>
     {{ form.password }}
-    <button type="submit">Войти</button>
+    <button id="login" type="submit">Войти</button>
 </form>
 <p>Вы не зарегистрированны?</p>
 <a href="{% url "signup" %}?next={% firstof request.path '/' %}">Регистрация</a>

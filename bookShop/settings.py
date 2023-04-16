@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os.path
 # import environ
 from pathlib import Path
+
 #
 # env = environ.Env(
 #     # set casting, default value
@@ -89,12 +90,25 @@ DATABASES = {
         'PASSWORD': 'djangopasswd',
         'HOST': 'localhost',
         'PORT': '3306',
+        'TEST': {
+            'CHARSET': 'utf8',
+            'COLLATION': 'utf8_general_ci',
+        },
+        'OPTIONS': {
+            'charset': 'utf8mb4',
+            "init_command": "SET foreign_key_checks = 0",
+        }
+        # 'OPTIONS': {'charset': 'utf8mb4'}
     }
     # 'default': {
     #     'ENGINE': 'django.db.backends.sqlite3',
     #     'NAME': BASE_DIR / 'db.sqlite3',
     # }
 }
+
+# import sys
+# if 'test' in sys.argv or 'test_coverage' in sys.argv: #Covers regular testing and django-coverage
+#     DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
